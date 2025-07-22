@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cardio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="icon" href="imgs/pro.png" type="image/png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .img-cardio {
+      display: block;
+      margin: 20px auto;
+      max-width: 300px;
+    }
+
+    .descricao {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .day {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      min-height: 120px;
+    }
+
+    .day h4 {
+      margin: 0 0 5px 0;
+    }
+
+    .day textarea {
+      width: 100%;
+      resize: none;
+      height: 60px;
+    }
+
+    .month-title {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .voltar-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+      color: #333;
+      text-decoration: none;
+      background-color: #f0f0f0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .voltar-icon:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <a href="treino.html" class="voltar-icon" title="Voltar para a página anterior"
+    ><i class="fas fa-arrow-left"></i> Voltar</a
+  >
+
+  <h1>Cardio</h1>
+
+  <img
+    src="imgs/cardio treino.jpg"
+    alt="Imagem de Cardio"
+    class="img-cardio"
+  />
+
+  <div class="descricao">
+    <p>
+      Adicione abaixo quanto tempo você treinou em cada dia do mês, e qual foi o
+      tipo de exercício feito.
+    </p>
+  </div>
+
+  <div class="month-title" id="monthYear"></div>
+
+  <div class="calendar" id="calendar"></div>
+
+  <script>
+    const calendar = document.getElementById("calendar");
+    const monthYear = document.getElementById("monthYear");
+
+    const monthNames = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
+
+    function renderCalendar() {
+      calendar.innerHTML = ""; // Limpa o calendário antigo
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth();
+
+      monthYear.textContent = `${monthNames[month]} ${year}`;
+
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const key = `cardio_${year}_${month}_${day}`;
+        const savedNote = localStorage.getItem(key) || "";
+
+        const div = document.createElement("div");
+        div.className = "day";
+
+        const h4 = document.createElement("h4");
+        h4.textContent = `${day}/${month + 1}`;
+
+        const textarea = document.createElement("textarea");
+        textarea.value = savedNote;
+        textarea.placeholder = "Ex: 20min corrida";
+
+        textarea.addEventListener("input", () => {
+          localStorage.setItem(key, textarea.value);
+        });
+
+        div.appendChild(h4);
+        div.appendChild(textarea);
+        calendar.appendChild(div);
+      }
+    }
+
+    // Renderiza o calendário inicialmente
+    renderCalendar();
+
+    // Função para calcular quantos milissegundos faltam para a próxima meia-noite
+    function msUntilMidnight() {
+      const now = new Date();
+      const midnight = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1
+      );
+      return midnight - now;
+    }
+
+    // Agenda a próxima atualização para a meia-noite
+    setTimeout(() => {
+      renderCalendar();
+
+      // Depois atualiza a cada 24h
+      setInterval(renderCalendar, 24 * 60 * 60 * 1000);
+    }, msUntilMidnight());
+  </script>
+
+    <div class="banner">
+    <p>🔥 Continue se superando a cada treino! 💪</p>
+  </div>
+</body>
+</html>
