@@ -4,30 +4,58 @@ body {
   font-family: Arial, sans-serif;
   background-color: #000;
   color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-top: 30px;
+  color: #fff;
 }
 
 .treino-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start; /* Alinha os vídeos mais à esquerda */
   align-items: flex-start;
   background-color: #1a1a1a;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 30px;
   margin: 40px auto;
-  max-width: 1000px;
+  max-width: 1200px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  gap: 30px;
 }
 
-.video-box iframe {
-  width: 400px;
-  height: 250px;
-  border-radius: 10px;
+.video-box {
+  width: 500px;
+  height: 240px;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.video-box iframe,
+.video-box video {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  background-color: #000;
+  display: block;
+}
+
+.video-box video[poster] {
+  background-size: cover;
+  background-position: center;
 }
 
 .descricao {
-  margin-left: 30px;
-  max-width: 500px;
+  max-width: 550px;
+  color: #fff;
 }
 
 .descricao h2 {
@@ -46,21 +74,11 @@ body {
   text-align: center;
   padding: 25px;
   margin: 30px auto;
-  max-width: 900px;
+  max-width: 1000px;
   font-size: 1.5em;
   font-weight: bold;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-}
-.video-box video {
-  width: 400px;
-  height: 250px;
-  border-radius: 10px;
-  background-color: #000;
-}
-
-.h1 {
-    text-align: center;
 }
 
 .voltar-icon {
@@ -75,8 +93,38 @@ body {
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
+  z-index: 1000;
 }
 
 .voltar-icon:hover {
   background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .treino-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .descricao {
+    margin-left: 0;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .video-box {
+    width: 100%;
+    height: auto;
+  }
+
+  .video-box iframe,
+  .video-box video {
+    height: auto;
+  }
+
+  h1 {
+    font-size: 2em;
+    padding: 10px;
+  }
 }
