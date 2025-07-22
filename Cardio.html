@@ -10,76 +10,70 @@
   />
   <link rel="icon" href="imgs/pro.png" type="image/png" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
+/* Ajustes para Mobile */
+@media (max-width: 600px) {
+  body {
+    margin: 10px;
+  }
 
-    h1 {
-      text-align: center;
-    }
+  h1 {
+    font-size: 2.5em;
+  }
 
-    .img-cardio {
-      display: block;
-      margin: 20px auto;
-      max-width: 300px;
-    }
+  .img-cardio {
+    max-width: 90%;
+    height: auto;
+    margin: 20px auto 30px;
+  }
 
-    .descricao {
-      max-width: 600px;
-      margin: 0 auto 30px;
-      text-align: center;
-    }
+  .descricao {
+    max-width: 90%;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    padding: 0 10px;
+  }
 
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+  .month-title {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    padding: 0 10px;
+  }
 
-    .day {
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 8px;
-      min-height: 120px;
-    }
+  .calendar {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    max-width: 100%;
+    padding: 0 10px;
+  }
 
-    .day h4 {
-      margin: 0 0 5px 0;
-    }
+  .day {
+    min-height: 160px;
+    padding: 15px;
+  }
 
-    .day textarea {
-      width: 100%;
-      resize: none;
-      height: 60px;
-    }
+  .day h4 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
 
-    .month-title {
-      text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
+  .day textarea {
+    height: 90px;
+    font-size: 1em;
+    padding: 8px;
+  }
 
-    .voltar-icon {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 20px;
-      color: #333;
-      text-decoration: none;
-      background-color: #f0f0f0;
-      padding: 8px 12px;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s;
-    }
+  .voltar-icon {
+    font-size: 22px;
+    padding: 10px 14px;
+  }
 
-    .voltar-icon:hover {
-      background-color: #ddd;
-    }
-  </style>
+  .banner p {
+    font-size: 1.3em;
+    margin: 20px 10px;
+  }
+}
+
+ </style>
 </head>
 <body>
   <a href="index.html" class="voltar-icon" title="Voltar para a página anterior"
