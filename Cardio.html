@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cardio</title>
   <link rel="stylesheet" href="style.css" />
   <link
@@ -10,70 +11,191 @@
   />
   <link rel="icon" href="imgs/pro.png" type="image/png" />
   <style>
-/* Ajustes para Mobile */
-@media (max-width: 600px) {
-  body {
-    margin: 10px;
-  }
+    /* Box sizing para facilitar cálculos */
+    * {
+      box-sizing: border-box;
+    }
 
-  h1 {
-    font-size: 2.5em;
-  }
+    /* Evita scroll horizontal */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      width: 100%;
+    }
 
-  .img-cardio {
-    max-width: 90%;
-    height: auto;
-    margin: 20px auto 30px;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 100%;
+      background-color: #fff; /* Se quiser fundo branco */
+      color: #000; /* Cor do texto */
+    }
 
-  .descricao {
-    max-width: 90%;
-    margin-bottom: 25px;
-    font-size: 1.1em;
-    padding: 0 10px;
-  }
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 3em;
+      color: #222;
+    }
 
-  .month-title {
-    font-size: 1.3em;
-    margin-bottom: 15px;
-    padding: 0 10px;
-  }
+    .img-cardio {
+      display: block;
+      margin: 20px auto 30px;
+      max-width: 300px;
+      width: 90%;
+      height: auto;
+      border-radius: 10px;
+    }
 
-  .calendar {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    max-width: 100%;
-    padding: 0 10px;
-  }
+    .descricao {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      text-align: center;
+      padding: 0 10px;
+      font-size: 1.1em;
+      color: #333;
+    }
 
-  .day {
-    min-height: 160px;
-    padding: 15px;
-  }
+    .month-title {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      color: #444;
+    }
 
-  .day h4 {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-  }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
 
-  .day textarea {
-    height: 90px;
-    font-size: 1em;
-    padding: 8px;
-  }
+    .day {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      min-height: 120px;
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .voltar-icon {
-    font-size: 22px;
-    padding: 10px 14px;
-  }
+    .day h4 {
+      margin: 0 0 5px 0;
+      font-weight: 600;
+      color: #555;
+    }
 
-  .banner p {
-    font-size: 1.3em;
-    margin: 20px 10px;
-  }
-}
+    .day textarea {
+      width: 100%;
+      resize: none;
+      height: 60px;
+      font-size: 1em;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex-grow: 1;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
 
- </style>
+    .voltar-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 20px;
+      color: #333;
+      text-decoration: none;
+      background-color: #f0f0f0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+      z-index: 9999;
+    }
+
+    .voltar-icon:hover {
+      background-color: #ddd;
+    }
+
+    .banner {
+      margin: 30px 0;
+      text-align: center;
+      font-size: 1.2em;
+      color: #e63946;
+      font-weight: 700;
+    }
+
+    /* Ajustes para Mobile */
+    @media (max-width: 600px) {
+      body {
+        margin: 10px auto;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      .img-cardio {
+        max-width: 90%;
+        margin: 20px auto 30px;
+      }
+
+      .descricao {
+        max-width: 90%;
+        margin-bottom: 25px;
+        font-size: 1.1em;
+        padding: 0 10px;
+      }
+
+      .month-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        padding: 0 10px;
+      }
+
+      .calendar {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+        max-width: 100%;
+        padding: 0 10px;
+      }
+
+      .day {
+        min-height: 160px;
+        padding: 15px;
+      }
+
+      .day h4 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+      }
+
+      .day textarea {
+        height: 90px;
+        font-size: 1em;
+        padding: 8px;
+      }
+
+      .voltar-icon {
+        font-size: 22px;
+        padding: 10px 14px;
+      }
+
+      .banner {
+        font-size: 1.3em;
+        margin: 20px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
   <a href="index.html" class="voltar-icon" title="Voltar para a página anterior"
@@ -176,7 +298,7 @@
     }, msUntilMidnight());
   </script>
 
-    <div class="banner">
+  <div class="banner">
     <p>🔥 Continue se superando a cada treino! 💪</p>
   </div>
 </body>
